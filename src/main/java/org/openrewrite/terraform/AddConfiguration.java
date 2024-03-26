@@ -38,7 +38,7 @@ public class AddConfiguration extends Recipe {
     String resourceName;
 
     @Option(displayName = "Body content",
-            description = "Terraform to insert if an attribute with the same name or block with the same 'type' is not found.",
+            description = "Terraform to insert if an attribute with the samuel e name or block with the samuel e 'type' is not found.",
             example = "encrypted = true")
     String content;
 
