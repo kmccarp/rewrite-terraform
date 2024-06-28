@@ -59,7 +59,7 @@ public class SecureRandom extends Recipe {
             @Override
             public Hcl.Attribute visitAttribute(Hcl.Attribute attribute, ExecutionContext ctx) {
                 Hcl parent = getCursor().getParentOrThrow().getValue();
-                if (parent instanceof Hcl.Block && TerraformResource.isResource((Hcl.Block) parent, "random_id")) {
+                if (parent instanceof Hcl.Block block && TerraformResource.isResource(block, "random_id")) {
                     if ("byte_length".equals(attribute.getSimpleName()) && attribute.getValue() instanceof Hcl.Literal) {
                         Hcl.Literal value = (Hcl.Literal) attribute.getValue();
                         int minLength = byteLength == null ? DEFAULT_MINIMUM : byteLength;

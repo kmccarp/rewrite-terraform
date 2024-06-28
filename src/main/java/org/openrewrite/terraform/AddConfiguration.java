@@ -70,11 +70,11 @@ public class AddConfiguration extends Recipe {
                             b.getCoordinates().last());
 
                     List<BodyContent> body = b.getBody();
-                    BodyContent parsedContent = body.get(body.size() - 1);
+                    BodyContent parsedContent = body.getLast();
 
                     String contentName;
-                    if (parsedContent instanceof Hcl.Attribute) {
-                        contentName = ((Hcl.Attribute) parsedContent).getSimpleName();
+                    if (parsedContent instanceof Hcl.Attribute attribute) {
+                        contentName = attribute.getSimpleName();
                     } else {
                         Hcl.Identifier type = ((Hcl.Block) parsedContent).getType();
                         assert type != null;
@@ -83,11 +83,10 @@ public class AddConfiguration extends Recipe {
 
                     for (int i = 0; i < body.size() - 1; i++) {
                         BodyContent content1 = body.get(i);
-                        if (content1 instanceof Hcl.Attribute && ((Hcl.Attribute) content1).getSimpleName().equals(contentName)) {
+                        if (content1 instanceof Hcl.Attribute attribute && attribute.getSimpleName().equals(contentName)) {
                             // discard the in-progress change and return
                             return block;
-                        } else if (content1 instanceof Hcl.Block) {
-                            Hcl.Block siblingBlock = (Hcl.Block) content1;
+                        } else if (content1 instanceof Hcl.Block siblingBlock) {
                             if (siblingBlock.getType() != null && siblingBlock.getType().getName().equals(contentName)) {
                                 return block;
                             }
