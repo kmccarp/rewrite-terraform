@@ -30,7 +30,6 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
 import java.util.function.BiPredicate;
@@ -39,7 +38,7 @@ import java.util.stream.Collectors;
 
 public class RewriteTerraformProjectOnDisk {
     public static void main(String[] args) throws Exception {
-        Path srcDir = Paths.get(args[0]);
+        Path srcDir = Path.of(args[0]);
 
         Recipe recipe = Environment.builder()
           .scanRuntimeClasspath()
